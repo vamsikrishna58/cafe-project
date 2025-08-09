@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <style>
+    body {
+      background-image:url('images/caffeine-coffee-coffee-beans-585750.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.376);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    .container h2 {
+      text-align: center;
+      color: rgb(50 38 38);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    input{
+      font-size: medium;
+      border-radius: 10px;
+      border: none;
+      background-color: rgba(240, 255, 255, 0.429);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    input:hover{
+      background-color: white;
+      color: black;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .container button {
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .container button:hover {
+      background: #45a049;
+    }
+
+    .message {
+      margin-top: 10px;
+      text-align: center;
+      color: green;
+    }
+    #haveaccount{
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      color: rgb(50 38 38);
+      text-align: center;
+    }
+
+
+
+    /* Base styles already exist above */
+
+/* Small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .container h2 {
+    font-size: 1.5rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .container button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/* Medium devices (tablets, 576px to 991px) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .container {
+    width: 100%;
+    height: 455px;
+    padding: 25px;
+    line-height: 45px;
+  }
+
+  .container h2 {
+    font-size: 2.75rem;
+  }
+
+  input {
+    font-size: 2rem;
+    padding: 10px;
+  }
+
+  .container button {
+    font-size: 2rem;
+    padding: 10px;
+  }
+  #haveaccount{
+  font-size: 1.5rem;
+}
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    width: 400px;
+  }
+
+  .container h2 {
+    font-size: 2rem;
+  }
+
+  input,
+  .container button {
+    font-size: 1rem;
+  }
+}
+
+    
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Register</h2>
+    <form action="">
+    <input type="text" id="name" placeholder="Full Name" >
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="registerUser()">Register</button>
+    <div class="message" id="message"></div>
+    <div id="haveaccount">You Have Account ?<a href="login.html">Login</a></div>
+    </form>
+  </div>
+
+  <script>
+    function registerUser() {
+     
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (name === '' || email == '' || password === '') {
+        alert("Please fill all fields!");
+        return;
+      }
+
+       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address!");
+      return;
+    }
+
+
+      const user = {
+        name: name,
+        email: email,
+        password: password
+      };
+
+      // Store in localStorage
+      localStorage.setItem("userData", JSON.stringify(user));
+      
+      sessionStorage.setItem("userData", JSON.stringify(user));
+
+  
+     document.getElementById("message").textContent = "successful";
+  
+    setTimeout(()=>
+  {
+    window.location.href='login.html'
+  })
+
+      // Clear the form
+      // document.getElementById("name").value = "";
+      // document.getElementById("email").value = "";
+      // document.getElementById("password").value = "";
+    }
+   
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
